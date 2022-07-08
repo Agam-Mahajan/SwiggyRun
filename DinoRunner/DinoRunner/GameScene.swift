@@ -455,20 +455,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //add to scene
         cactusNode.addChild(obstacleSprite)
         //animate
-        animateCactus(sprite: obstacleSprite, texture: obstacleTexture)
+        animateCactus(sprite: obstacleSprite, texture: obstacleTexture, scale: obstacleScale)
     }
     
-    func animateCactus(sprite: SKSpriteNode, texture: SKTexture) {
+    func animateCactus(sprite: SKSpriteNode, texture: SKTexture, scale: CGFloat) {
         let screenWidth = self.frame.size.width
-        let distanceOffscreen = 500.0 as CGFloat
-        let distanceToMove = screenWidth + distanceOffscreen + texture.size().width
+        let distanceOffscreen = 50.0 as CGFloat
+        let distanceToMove = screenWidth + distanceOffscreen + texture.size().width * scale
         
         //actions
         let moveCactus = SKAction.moveBy(x: -distanceToMove, y: 0.0, duration: TimeInterval(screenWidth / groundSpeed))
         let removeCactus = SKAction.removeFromParent()
         let moveAndRemove = SKAction.sequence([moveCactus, removeCactus])
         
-        sprite.position = CGPoint(x: distanceToMove, y: groundHeight! + texture.size().height - 10)
+        sprite.position = CGPoint(x: distanceToMove, y: getGroundHeight() + texture.size().height * scale )
         sprite.run(moveAndRemove)
     }
     
