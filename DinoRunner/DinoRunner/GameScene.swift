@@ -346,7 +346,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //texture
         var asset = "dino.assets/landscape/building4"
         if indexForBuilding % 2 != 0 {
-            asset = "dino.assets/landscape/building3"
+            asset = "dino.assets/landscape/building5"
         }
         let moonTexture = SKTexture(imageNamed: asset)
         let moonScale = 0.8 as CGFloat
