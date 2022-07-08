@@ -59,7 +59,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var obstacleTextures = ["cones", "cones3", "trafficStop", "trafficStop2"]
     var obstacleTextures1 = ["cones", "cones3", "trafficStop", "trafficStop2"]
-    var obstacleTextures2 = ["cones", "cones3", "trafficStop", "trafficStop2", "hurdles", "horseFence"]
+    var obstacleTextures2 = ["cones", "cones3", "trafficStop", "trafficStop2", "horseHurdle"]
     
     let objectAnimationTiming = 0.10 as TimeInterval
     var objectUpdated = false
