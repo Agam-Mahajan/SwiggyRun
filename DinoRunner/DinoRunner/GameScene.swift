@@ -40,10 +40,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var dinoYPosition: CGFloat?
     var groundSpeed = 500 as CGFloat
     
-    var theatreSpeed = 200 as CGFloat
+    var theatreSpeed = 50 as CGFloat
     
     //consts
-    let dinoHopForce = 700 as Int
+    let dinoHopForce = 800 as Int
     let cloudSpeed = 50 as CGFloat
     let moonSpeed = 10 as CGFloat
     
@@ -84,7 +84,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.createTheatre()
         }
-        
         
         //dinosaur
         dinosaurNode = SKNode()
@@ -162,7 +161,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         }
-        if (score / 5) > 150 {
+        if (score / 5) > 10 {
             updateObjectIcon()
         }
     }
@@ -203,11 +202,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //
 //        let runningAnimation = SKAction.animate(with: [dinoTexture1, dinoTexture2], timePerFrame: 0.12)
         
-        let array: [SKTexture] = getObjectAssets(.de)
-        let runningAnimation = SKAction.animate(with: array, timePerFrame: objectAnimationTiming)
-        
-        dinoSprite.position = CGPoint(x: self.frame.size.width * 0.15, y: dinoYPosition!)
-        dinoSprite.run(SKAction.repeatForever(runningAnimation))
+//        let array: [SKTexture] = getObjectAssets(.de)
+//        let runningAnimation = SKAction.animate(with: array, timePerFrame: objectAnimationTiming)
+//
+//        dinoSprite.position = CGPoint(x: self.frame.size.width * 0.15, y: dinoYPosition!)
+//        dinoSprite.run(SKAction.repeatForever(runningAnimation))
+        dinoSprite.removeFromParent()
+        createDinosaur()
     }
     
     func gameOver() {
@@ -215,9 +216,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         resetInstructions.fontColor = SKColor.gray
         
-        let deadDinoTexture = SKTexture(imageNamed: "dino.assets/horses/dead-horse")
+        let deadDinoTexture = SKTexture(imageNamed: "dino.assets/horses/game-over")
         deadDinoTexture.filteringMode = .nearest
-        
+        dinoSprite.size = deadDinoTexture.size()
         dinoSprite.removeAllActions()
         dinoSprite.texture = deadDinoTexture
     }
@@ -315,8 +316,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    
-    
     func animateCloud(_ sprite: SKSpriteNode, cloudIndex i: Int, textureWidth: CGFloat) {
         let screenWidth = self.frame.size.width
         let screenHeight = self.frame.size.height
@@ -394,14 +393,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let runningAnimation = SKAction.animate(with: array, timePerFrame: objectAnimationTiming)
         let size: CGSize = .init(width: 30, height: 20.0)
-        
-//        //textures
-//        let dinoTexture1 = SKTexture(imageNamed: "dino.assets/dinosaurs/dinoRight")
-//        let dinoTexture2 = SKTexture(imageNamed: "dino.assets/dinosaurs/dinoLeft")
-//        dinoTexture1.filteringMode = .nearest
-//        dinoTexture2.filteringMode = .nearest
-//
-//        let runningAnimation = SKAction.animate(with: [dinoTexture1, dinoTexture2], timePerFrame: 0.12)
         
         dinoSprite = SKSpriteNode()
         dinoSprite.size = size
@@ -558,7 +549,7 @@ extension GameScene {
         let runningAnimation = SKAction.animate(with: array, timePerFrame: objectAnimationTiming)
         let size: CGSize = .init(width: 30, height: 20.0)
         dinoSprite = SKSpriteNode()
-        dinoSprite.size = size//dinoTexture1.size()
+        dinoSprite.size = size
         dinoSprite.setScale(dinoScale)
         dinosaurNode.addChild(dinoSprite)
 
