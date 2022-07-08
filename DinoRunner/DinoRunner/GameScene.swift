@@ -57,6 +57,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let cactusCategory = 1 << 2 as UInt32
     let birdCategory = 1 << 3 as UInt32
     
+    var obstacleTextures = ["cones", "cones3", "trafficStop", "trafficStop2"]
+    var obstacleTextures1 = ["cones", "cones3", "trafficStop", "trafficStop2"]
+    var obstacleTextures2 = ["cones", "cones3", "trafficStop", "trafficStop2", "horseHurdle"]
+    
     let objectAnimationTiming = 0.10 as TimeInterval
     var objectUpdated = false
     
@@ -164,6 +168,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if (score / 5) > 150 {
             updateObjectIcon()
+            updateObstacles()
+            
         }
     }
     
@@ -195,7 +201,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         birdNode.removeAllChildren()
         
         resetInstructions.fontColor = SKColor.white
-        
+        obstacleTextures = obstacleTextures1
 //        let dinoTexture1 = SKTexture(imageNamed: "dino.assets/dinosaurs/dinoRight")
 //        let dinoTexture2 = SKTexture(imageNamed: "dino.assets/dinosaurs/dinoLeft")
 //        dinoTexture1.filteringMode = .nearest
@@ -338,9 +344,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createTheatre() {
         //texture
-        var asset = "dino.assets/landscape/building1"
+        var asset = "dino.assets/landscape/building4"
         if indexForBuilding % 2 != 0 {
-            asset = "dino.assets/landscape/building3"
+            asset = "dino.assets/landscape/building5"
         }
         let moonTexture = SKTexture(imageNamed: asset)
         let moonScale = 0.8 as CGFloat
@@ -353,15 +359,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         backgroundNode.addChild(moonSprite)
         
         //animate the moon
-        animateTheatre(sprite: moonSprite, textureWidth: moonTexture.size().width * moonScale)
+        animateTheatre(sprite: moonSprite, textureWidth: moonTexture.size().width * moonScale, textureHeight: moonTexture.size().height*moonScale)
     }
     
-    func animateTheatre(sprite: SKSpriteNode, textureWidth: CGFloat) {
+    func animateTheatre(sprite: SKSpriteNode, textureWidth: CGFloat, textureHeight: CGFloat) {
         let screenWidth = self.frame.size.width
         let screenHeight = self.frame.size.height
         
         let distanceOffscreen = 400 as CGFloat // want to start the moon offscreen
-        let distanceBelowTop = 135 as CGFloat
+        let distanceBelowTop = 35 as CGFloat
         
         //moon actions
 //        let moveMoon = SKAction.moveBy(x: -screenWidth - textureWidth - distanceOffscreen,
@@ -377,7 +383,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let removeCactus = SKAction.removeFromParent()
         let moonLoop = SKAction.sequence([moveMoon, removeCactus])
         
-        sprite.position = CGPoint(x: screenWidth + distanceOffscreen, y: groundHeight! + distanceBelowTop)
+        sprite.position = CGPoint(x: screenWidth + distanceOffscreen, y: getGroundHeight() + textureHeight/2 + distanceBelowTop)
 //        sprite.run(SKAction.repeatForever(moonLoop))
         sprite.run(moonLoop)
         sprite.run(moonLoop) {
@@ -423,45 +429,48 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         dinoSprite.run(SKAction.repeatForever(runningAnimation))
     }
     
-    func spawnCactus() {
-        let cactusTextures = ["cactus1", "cactus2", "cactus3", "doubleCactus", "tripleCactus"]
-        let cactusScale = 3.0 as CGFloat
-        
-        //texture
-        let cactusTexture = SKTexture(imageNamed: "dino.assets/cacti/" + cactusTextures.randomElement()!)
-        cactusTexture.filteringMode = .nearest
-        
-        //sprite
-        let cactusSprite = SKSpriteNode(texture: cactusTexture)
-        cactusSprite.setScale(cactusScale)
-        
-        //physics
-        let contactBox = CGSize(width: cactusTexture.size().width * cactusScale,
-                                height: cactusTexture.size().height * cactusScale)
-        cactusSprite.physicsBody = SKPhysicsBody(rectangleOf: contactBox)
-        cactusSprite.physicsBody?.isDynamic = true
-        cactusSprite.physicsBody?.mass = 1.0
-        cactusSprite.physicsBody?.categoryBitMask = cactusCategory
-        cactusSprite.physicsBody?.contactTestBitMask = dinoCategory
-        cactusSprite.physicsBody?.collisionBitMask = groundCategory
-        
-        //add to scene
-        cactusNode.addChild(cactusSprite)
-        //animate
-        animateCactus(sprite: cactusSprite, texture: cactusTexture)
+    func updateObstacles() {
+        obstacleTextures = obstacleTextures2
     }
     
-    func animateCactus(sprite: SKSpriteNode, texture: SKTexture) {
+    func spawnCactus() {
+        
+        //texture
+        let obstacleTexture = SKTexture(imageNamed: "dino.assets/cacti/" + obstacleTextures.randomElement()!)
+        let obstacleScale = 85/obstacleTexture.size().height as CGFloat
+        obstacleTexture.filteringMode = .nearest
+        
+        //sprite
+        let obstacleSprite = SKSpriteNode(texture: obstacleTexture)
+        obstacleSprite.setScale(obstacleScale)
+        
+        //physics
+        let contactBox = CGSize(width: obstacleTexture.size().width * obstacleScale,
+                                height: obstacleTexture.size().height * obstacleScale)
+        obstacleSprite.physicsBody = SKPhysicsBody(rectangleOf: contactBox)
+        obstacleSprite.physicsBody?.isDynamic = true
+        obstacleSprite.physicsBody?.mass = 1.0
+        obstacleSprite.physicsBody?.categoryBitMask = cactusCategory
+        obstacleSprite.physicsBody?.contactTestBitMask = dinoCategory
+        obstacleSprite.physicsBody?.collisionBitMask = groundCategory
+        
+        //add to scene
+        cactusNode.addChild(obstacleSprite)
+        //animate
+        animateCactus(sprite: obstacleSprite, texture: obstacleTexture, scale: obstacleScale)
+    }
+    
+    func animateCactus(sprite: SKSpriteNode, texture: SKTexture, scale: CGFloat) {
         let screenWidth = self.frame.size.width
         let distanceOffscreen = 50.0 as CGFloat
-        let distanceToMove = screenWidth + distanceOffscreen + texture.size().width
+        let distanceToMove = screenWidth + distanceOffscreen + texture.size().width * scale
         
         //actions
         let moveCactus = SKAction.moveBy(x: -distanceToMove, y: 0.0, duration: TimeInterval(screenWidth / groundSpeed))
         let removeCactus = SKAction.removeFromParent()
         let moveAndRemove = SKAction.sequence([moveCactus, removeCactus])
         
-        sprite.position = CGPoint(x: distanceToMove, y: getGroundHeight() + texture.size().height)
+        sprite.position = CGPoint(x: distanceToMove, y: getGroundHeight() + texture.size().height * scale/2 )
         sprite.run(moveAndRemove)
     }
     
