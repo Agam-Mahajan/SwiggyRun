@@ -222,11 +222,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         resetInstructions.fontColor = SKColor.gray
         
-        let deadDinoTexture = SKTexture(imageNamed: "dino.assets/horses/game-over")
-        deadDinoTexture.filteringMode = .nearest
-        dinoSprite.size = deadDinoTexture.size()
+//        let deadDinoTexture = SKTexture(imageNamed: "dino.assets/horses/game-over")
+//        deadDinoTexture.filteringMode = .nearest
+//        dinoSprite.size = deadDinoTexture.size()
         dinoSprite.removeAllActions()
-        dinoSprite.texture = deadDinoTexture
+//        dinoSprite.texture = deadDinoTexture
     }
     
     func createAndMoveGround() {

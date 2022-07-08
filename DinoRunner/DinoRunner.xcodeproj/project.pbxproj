@@ -15,6 +15,7 @@
 		73E60465210EA3F0002E52CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73E60464210EA3F0002E52CB /* Assets.xcassets */; };
 		73E60468210EA3F0002E52CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73E60466210EA3F0002E52CB /* LaunchScreen.storyboard */; };
 		73E60470210EAB9E002E52CB /* dino.assets in Resources */ = {isa = PBXBuildFile; fileRef = 73E6046F210EAB9E002E52CB /* dino.assets */; };
+		FCFF26DC28785B890003C078 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFF26DB28785B890003C078 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		73E60467210EA3F0002E52CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73E60469210EA3F0002E52CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73E6046F210EAB9E002E52CB /* dino.assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dino.assets; path = ../../dino.assets; sourceTree = "<group>"; };
+		FCFF26DB28785B890003C078 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				73E60459210EA3EF002E52CB /* GameScene.sks */,
 				73E6045D210EA3EF002E52CB /* GameScene.swift */,
 				73E6045F210EA3EF002E52CB /* GameViewController.swift */,
+				FCFF26DB28785B890003C078 /* ViewController.swift */,
 				73E60461210EA3EF002E52CB /* Main.storyboard */,
 				73E60464210EA3F0002E52CB /* Assets.xcassets */,
 				73E6046F210EAB9E002E52CB /* dino.assets */,
@@ -148,6 +151,7 @@
 			files = (
 				73E6045E210EA3EF002E52CB /* GameScene.swift in Sources */,
 				73E60460210EA3EF002E52CB /* GameViewController.swift in Sources */,
+				FCFF26DC28785B890003C078 /* ViewController.swift in Sources */,
 				73E60458210EA3EF002E52CB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
