@@ -58,6 +58,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let birdCategory = 1 << 3 as UInt32
     
     var obstacleTextures = ["cones", "cones3", "trafficStop", "trafficStop2"]
+    var obstacleTextures1 = ["cones", "cones3", "trafficStop", "trafficStop2"]
+    var obstacleTextures2 = ["cones", "cones3", "trafficStop", "trafficStop2", "hurdles", "horseFence"]
     
     let objectAnimationTiming = 0.10 as TimeInterval
     var objectUpdated = false
@@ -199,7 +201,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         birdNode.removeAllChildren()
         
         resetInstructions.fontColor = SKColor.white
-        
+        obstacleTextures = obstacleTextures1
 //        let dinoTexture1 = SKTexture(imageNamed: "dino.assets/dinosaurs/dinoRight")
 //        let dinoTexture2 = SKTexture(imageNamed: "dino.assets/dinosaurs/dinoLeft")
 //        dinoTexture1.filteringMode = .nearest
@@ -342,7 +344,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createTheatre() {
         //texture
-        var asset = "dino.assets/landscape/building1"
+        var asset = "dino.assets/landscape/building4"
         if indexForBuilding % 2 != 0 {
             asset = "dino.assets/landscape/building3"
         }
@@ -357,15 +359,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         backgroundNode.addChild(moonSprite)
         
         //animate the moon
-        animateTheatre(sprite: moonSprite, textureWidth: moonTexture.size().width * moonScale)
+        animateTheatre(sprite: moonSprite, textureWidth: moonTexture.size().width * moonScale, textureHeight: moonTexture.size().height*moonScale)
     }
     
-    func animateTheatre(sprite: SKSpriteNode, textureWidth: CGFloat) {
+    func animateTheatre(sprite: SKSpriteNode, textureWidth: CGFloat, textureHeight: CGFloat) {
         let screenWidth = self.frame.size.width
         let screenHeight = self.frame.size.height
         
         let distanceOffscreen = 400 as CGFloat // want to start the moon offscreen
-        let distanceBelowTop = 135 as CGFloat
+        let distanceBelowTop = 35 as CGFloat
         
         //moon actions
 //        let moveMoon = SKAction.moveBy(x: -screenWidth - textureWidth - distanceOffscreen,
@@ -381,7 +383,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let removeCactus = SKAction.removeFromParent()
         let moonLoop = SKAction.sequence([moveMoon, removeCactus])
         
-        sprite.position = CGPoint(x: screenWidth + distanceOffscreen, y: groundHeight! + distanceBelowTop)
+        sprite.position = CGPoint(x: screenWidth + distanceOffscreen, y: getGroundHeight() + textureHeight/2 + distanceBelowTop)
 //        sprite.run(SKAction.repeatForever(moonLoop))
         sprite.run(moonLoop)
         sprite.run(moonLoop) {
@@ -428,14 +430,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func updateObstacles() {
-        obstacleTextures.append("hurdle")
+        obstacleTextures = obstacleTextures2
     }
     
     func spawnCactus() {
         
         //texture
         let obstacleTexture = SKTexture(imageNamed: "dino.assets/cacti/" + obstacleTextures.randomElement()!)
-        let obstacleScale = 75/obstacleTexture.size().height as CGFloat
+        let obstacleScale = 85/obstacleTexture.size().height as CGFloat
         obstacleTexture.filteringMode = .nearest
         
         //sprite
@@ -468,7 +470,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let removeCactus = SKAction.removeFromParent()
         let moveAndRemove = SKAction.sequence([moveCactus, removeCactus])
         
-        sprite.position = CGPoint(x: distanceToMove, y: getGroundHeight() + texture.size().height * scale )
+        sprite.position = CGPoint(x: distanceToMove, y: getGroundHeight() + texture.size().height * scale/2 )
         sprite.run(moveAndRemove)
     }
     
