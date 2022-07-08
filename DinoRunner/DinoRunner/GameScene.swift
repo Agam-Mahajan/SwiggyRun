@@ -57,6 +57,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let cactusCategory = 1 << 2 as UInt32
     let birdCategory = 1 << 3 as UInt32
     
+    var obstacleTextures = ["cones", "cones3", "trafficStop", "trafficStop2"]
+    
     let objectAnimationTiming = 0.10 as TimeInterval
     var objectUpdated = false
     
@@ -164,6 +166,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if (score / 5) > 150 {
             updateObjectIcon()
+            updateObstacles()
+            
         }
     }
     
@@ -423,37 +427,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         dinoSprite.run(SKAction.repeatForever(runningAnimation))
     }
     
+    func updateObstacles() {
+        obstacleTextures.append("hurdle")
+    }
+    
     func spawnCactus() {
-        let cactusTextures = ["cactus1", "cactus2", "cactus3", "doubleCactus", "tripleCactus"]
-        let cactusScale = 3.0 as CGFloat
         
         //texture
-        let cactusTexture = SKTexture(imageNamed: "dino.assets/cacti/" + cactusTextures.randomElement()!)
-        cactusTexture.filteringMode = .nearest
+        let obstacleTexture = SKTexture(imageNamed: "dino.assets/cacti/" + obstacleTextures.randomElement()!)
+        let obstacleScale = 75/obstacleTexture.size().height as CGFloat
+        obstacleTexture.filteringMode = .nearest
         
         //sprite
-        let cactusSprite = SKSpriteNode(texture: cactusTexture)
-        cactusSprite.setScale(cactusScale)
+        let obstacleSprite = SKSpriteNode(texture: obstacleTexture)
+        obstacleSprite.setScale(obstacleScale)
         
         //physics
-        let contactBox = CGSize(width: cactusTexture.size().width * cactusScale,
-                                height: cactusTexture.size().height * cactusScale)
-        cactusSprite.physicsBody = SKPhysicsBody(rectangleOf: contactBox)
-        cactusSprite.physicsBody?.isDynamic = true
-        cactusSprite.physicsBody?.mass = 1.0
-        cactusSprite.physicsBody?.categoryBitMask = cactusCategory
-        cactusSprite.physicsBody?.contactTestBitMask = dinoCategory
-        cactusSprite.physicsBody?.collisionBitMask = groundCategory
+        let contactBox = CGSize(width: obstacleTexture.size().width * obstacleScale,
+                                height: obstacleTexture.size().height * obstacleScale)
+        obstacleSprite.physicsBody = SKPhysicsBody(rectangleOf: contactBox)
+        obstacleSprite.physicsBody?.isDynamic = true
+        obstacleSprite.physicsBody?.mass = 1.0
+        obstacleSprite.physicsBody?.categoryBitMask = cactusCategory
+        obstacleSprite.physicsBody?.contactTestBitMask = dinoCategory
+        obstacleSprite.physicsBody?.collisionBitMask = groundCategory
         
         //add to scene
-        cactusNode.addChild(cactusSprite)
+        cactusNode.addChild(obstacleSprite)
         //animate
-        animateCactus(sprite: cactusSprite, texture: cactusTexture)
+        animateCactus(sprite: obstacleSprite, texture: obstacleTexture)
     }
     
     func animateCactus(sprite: SKSpriteNode, texture: SKTexture) {
         let screenWidth = self.frame.size.width
-        let distanceOffscreen = 50.0 as CGFloat
+        let distanceOffscreen = 500.0 as CGFloat
         let distanceToMove = screenWidth + distanceOffscreen + texture.size().width
         
         //actions
@@ -461,7 +468,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let removeCactus = SKAction.removeFromParent()
         let moveAndRemove = SKAction.sequence([moveCactus, removeCactus])
         
-        sprite.position = CGPoint(x: distanceToMove, y: getGroundHeight() + texture.size().height)
+        sprite.position = CGPoint(x: distanceToMove, y: groundHeight! + texture.size().height - 10)
         sprite.run(moveAndRemove)
     }
     
