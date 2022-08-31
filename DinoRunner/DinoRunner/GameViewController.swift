@@ -33,7 +33,7 @@ class GameViewController: UIViewController {
         self.view.addSubview(gameView)
         
         if let scene = SKScene(fileNamed: "GameScene") {
-            // Set the scale mode to scale to fit the window
+            // Set the scale mode to scale to fit the window 
             scene.scaleMode = .aspectFill
             
             // Present the scene
