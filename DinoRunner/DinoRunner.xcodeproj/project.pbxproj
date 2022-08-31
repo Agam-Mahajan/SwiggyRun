@@ -15,8 +15,19 @@
 		73E60465210EA3F0002E52CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73E60464210EA3F0002E52CB /* Assets.xcassets */; };
 		73E60468210EA3F0002E52CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73E60466210EA3F0002E52CB /* LaunchScreen.storyboard */; };
 		73E60470210EAB9E002E52CB /* dino.assets in Resources */ = {isa = PBXBuildFile; fileRef = 73E6046F210EAB9E002E52CB /* dino.assets */; };
+		E3A9F77228BF7BCD002E378D /* DinoRunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A9F77128BF7BCD002E378D /* DinoRunnerTests.swift */; };
 		FCFF26DC28785B890003C078 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFF26DB28785B890003C078 /* ViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E3A9F77428BF7BCD002E378D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73E6044C210EA3EF002E52CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 73E60453210EA3EF002E52CB;
+			remoteInfo = DinoRunner;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		73E60454210EA3EF002E52CB /* DinoRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DinoRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,11 +40,21 @@
 		73E60467210EA3F0002E52CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73E60469210EA3F0002E52CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73E6046F210EAB9E002E52CB /* dino.assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dino.assets; path = ../../dino.assets; sourceTree = "<group>"; };
+		E3A9F76F28BF7BCD002E378D /* DinoRunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DinoRunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3A9F77128BF7BCD002E378D /* DinoRunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinoRunnerTests.swift; sourceTree = "<group>"; };
+		E3A9F77328BF7BCD002E378D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCFF26DB28785B890003C078 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		73E60451210EA3EF002E52CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E3A9F76C28BF7BCD002E378D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -47,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				73E60456210EA3EF002E52CB /* DinoRunner */,
+				E3A9F77028BF7BCD002E378D /* DinoRunnerTests */,
 				73E60455210EA3EF002E52CB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				73E60454210EA3EF002E52CB /* DinoRunner.app */,
+				E3A9F76F28BF7BCD002E378D /* DinoRunnerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -74,6 +97,15 @@
 				73E60469210EA3F0002E52CB /* Info.plist */,
 			);
 			path = DinoRunner;
+			sourceTree = "<group>";
+		};
+		E3A9F77028BF7BCD002E378D /* DinoRunnerTests */ = {
+			isa = PBXGroup;
+			children = (
+				E3A9F77128BF7BCD002E378D /* DinoRunnerTests.swift */,
+				E3A9F77328BF7BCD002E378D /* Info.plist */,
+			);
+			path = DinoRunnerTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,18 +128,40 @@
 			productReference = 73E60454210EA3EF002E52CB /* DinoRunner.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E3A9F76E28BF7BCD002E378D /* DinoRunnerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E3A9F77828BF7BCD002E378D /* Build configuration list for PBXNativeTarget "DinoRunnerTests" */;
+			buildPhases = (
+				E3A9F76B28BF7BCD002E378D /* Sources */,
+				E3A9F76C28BF7BCD002E378D /* Frameworks */,
+				E3A9F76D28BF7BCD002E378D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E3A9F77528BF7BCD002E378D /* PBXTargetDependency */,
+			);
+			name = DinoRunnerTests;
+			productName = DinoRunnerTests;
+			productReference = E3A9F76F28BF7BCD002E378D /* DinoRunnerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		73E6044C210EA3EF002E52CB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "John Kuhn";
 				TargetAttributes = {
 					73E60453210EA3EF002E52CB = {
 						CreatedOnToolsVersion = 9.4.1;
+					};
+					E3A9F76E28BF7BCD002E378D = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 73E60453210EA3EF002E52CB;
 					};
 				};
 			};
@@ -125,6 +179,7 @@
 			projectRoot = "";
 			targets = (
 				73E60453210EA3EF002E52CB /* DinoRunner */,
+				E3A9F76E28BF7BCD002E378D /* DinoRunnerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -142,6 +197,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E3A9F76D28BF7BCD002E378D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -156,7 +218,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E3A9F76B28BF7BCD002E378D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3A9F77228BF7BCD002E378D /* DinoRunnerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E3A9F77528BF7BCD002E378D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 73E60453210EA3EF002E52CB /* DinoRunner */;
+			targetProxy = E3A9F77428BF7BCD002E378D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		73E60461210EA3EF002E52CB /* Main.storyboard */ = {
@@ -328,6 +406,51 @@
 			};
 			name = Release;
 		};
+		E3A9F77628BF7BCD002E378D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DinoRunnerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = agam.DinoRunnerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DinoRunner.app/DinoRunner";
+			};
+			name = Debug;
+		};
+		E3A9F77728BF7BCD002E378D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DinoRunnerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = agam.DinoRunnerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DinoRunner.app/DinoRunner";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -345,6 +468,15 @@
 			buildConfigurations = (
 				73E6046D210EA3F0002E52CB /* Debug */,
 				73E6046E210EA3F0002E52CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E3A9F77828BF7BCD002E378D /* Build configuration list for PBXNativeTarget "DinoRunnerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3A9F77628BF7BCD002E378D /* Debug */,
+				E3A9F77728BF7BCD002E378D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
