@@ -1,4 +1,4 @@
-# JIRA:
+## JIRA:
 
 # Description:
 
@@ -19,8 +19,9 @@ Please include the Solutioning Doc link which should be approved by the reviewer
 
 Include the names of devs who were reviewers of the doc and will do the PR review.
 
-### Slack/Figma/PRD:
+### Figma/PRD:
 
+Add links of PRD or Figma for the feature
 
 ### Screenshots
 
@@ -39,17 +40,14 @@ For major features, add recordings of FPS, CPU and Network Usage while navigatin
 - [ ] I have fixed any lint issues in my PR
 - [ ] Any dependent pods have been merged and used as a new tag
 
-## Sign offs:
-- [ ] I have gotten Design Doc sign off
+# Sign offs:
+- [ ] I have got Design Doc sign off
 
-- [ ] I have gotten QA sign off
+- [ ] I have got QA sign off
 QA sign off slack link: 
 
-- [ ] I have gotten Automation sign off
+- [ ] I have got Automation sign off
 Automation sign off slack link: 
 
-- [ ] I have gotten ARD sign off
+- [ ] I have got ARD sign off
 ARD sign off slack link: 
-
-
-
